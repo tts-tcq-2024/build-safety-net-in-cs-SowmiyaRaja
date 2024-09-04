@@ -12,7 +12,11 @@ public class Soundex
 
         StringBuilder soundex = new StringBuilder();
         soundex.Append(char.ToUpper(name[0]));
-
+        GetSoundexCodeAndAppend(name, ref soundex);        
+    }
+    
+    public static void GetSoundexCodeAndAppend (string name, ref StringBuilder soundex)
+    {
         for (int i = 1; i < name.Length && soundex.Length < 4; i++)
         {
             char code = GetSoundexCode(name[i]);
@@ -21,15 +25,18 @@ public class Soundex
                 soundex.Append(code);
             }
         }
+        AppendZeros(ref soundex);
+    }
 
+    public static void AppendZeros(ref StringBuilder soundex)
+    {
         while (soundex.Length < 4)
         {
             soundex.Append('0');
         }
-
-        return soundex.ToString();
+        soundex.ToString();
     }
-
+    
     private static char GetSoundexCode(char c)
     {
         c = char.ToUpper(c);
