@@ -41,13 +41,16 @@ public class Soundex
     private static char GetSoundexCode(char c)
     {
         c = char.ToUpper(c);
-        return ReplaceCharWithDigit("BFPV", c, '1');
+        if(ReplaceCharWithDigit("AEIOUYHW", c, '0'))
+        {
+            return '0';
+        }
+        ReplaceCharWithDigit("BFPV", c, '1');
         return ReplaceCharWithDigit("CGJKQSXZ", c, '2');
         return ReplaceCharWithDigit("DT", c, '3');
         return ReplaceCharWithDigit("L", c, '4');
         return ReplaceCharWithDigit("MN", c, '5');
-        return ReplaceCharWithDigit("R", c, '6');
-        return '0';        
+        return ReplaceCharWithDigit("R", c, '6');      
     }
 
     private static char (string CharSet, char c, char number)
