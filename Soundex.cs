@@ -13,17 +13,17 @@ public class Soundex
 
         StringBuilder soundex = new StringBuilder();
         soundex.Append(char.ToUpper(name[0]));
-        GetSoundexCodeAndAppend(name, ref soundex);
+        GetIndexFromChar(name, ref soundex);
         
         AppendZeros(ref soundex);
         soundex.ToString();
     }
     
-    private static void PassIndex (string name, ref StringBuilder soundex)
+    private static void GetIndexFromChar (string name, ref StringBuilder soundex)
     {
         for (int i = 1; i < name.Length && soundex.Length < 4; i++)
         {
-            GetSoundexCodeAndAppend(name[i], soundex);
+            GetSoundexCodeAndAppend(name[i], ref soundex);
         }
     }
 
@@ -54,12 +54,13 @@ public class Soundex
         return ReplaceCharWithDigit("L", c, '4');
         return ReplaceCharWithDigit("MN", c, '5');
         return ReplaceCharWithDigit("R", c, '6');      
-        return 0;
+        return '0';
     }
 
     private static char ReplaceCharWithDigit(string CharSet, char c, char number)
     {
         if(CharSet.Contains(c))
             return number;
+        return '7';
     }
 }
