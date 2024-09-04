@@ -57,7 +57,7 @@ public class Soundex
         return 0;
     }
 
-    private static char (string CharSet, char c, char number)
+    private static char ReplaceCharWithDigit(string CharSet, char c, char number)
     {
         if(CharSet.Contains(c))
             return number;
