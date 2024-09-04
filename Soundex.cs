@@ -13,7 +13,10 @@ public class Soundex
 
         StringBuilder soundex = new StringBuilder();
         soundex.Append(char.ToUpper(name[0]));
-        GetSoundexCodeAndAppend(name, ref soundex);        
+        GetSoundexCodeAndAppend(name, ref soundex);
+        
+        AppendZeros(ref soundex);
+        soundex.ToString();
     }
     
     private static void GetSoundexCodeAndAppend (string name, ref StringBuilder soundex)
@@ -26,7 +29,6 @@ public class Soundex
                 soundex.Append(code);
             }
         }
-        AppendZeros(ref soundex);
     }
 
     private static void AppendZeros(ref StringBuilder soundex)
@@ -35,22 +37,19 @@ public class Soundex
         {
             soundex.Append('0');
         }
-        soundex.ToString();
     }
     
     private static char GetSoundexCode(char c)
     {
         c = char.ToUpper(c);
-        if(ReplaceCharWithDigit("AEIOUYHW", c, '0'))
-        {
-            return '0';
-        }
-        ReplaceCharWithDigit("BFPV", c, '1');
+        
+        return ReplaceCharWithDigit("BFPV", c, '1');
         return ReplaceCharWithDigit("CGJKQSXZ", c, '2');
         return ReplaceCharWithDigit("DT", c, '3');
         return ReplaceCharWithDigit("L", c, '4');
         return ReplaceCharWithDigit("MN", c, '5');
         return ReplaceCharWithDigit("R", c, '6');      
+        return 0;
     }
 
     private static char (string CharSet, char c, char number)
