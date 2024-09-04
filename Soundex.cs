@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 public class Soundex
 {
@@ -15,7 +16,7 @@ public class Soundex
         GetSoundexCodeAndAppend(name, ref soundex);        
     }
     
-    public static void GetSoundexCodeAndAppend (string name, ref StringBuilder soundex)
+    private static void GetSoundexCodeAndAppend (string name, ref StringBuilder soundex)
     {
         for (int i = 1; i < name.Length && soundex.Length < 4; i++)
         {
@@ -28,7 +29,7 @@ public class Soundex
         AppendZeros(ref soundex);
     }
 
-    public static void AppendZeros(ref StringBuilder soundex)
+    private static void AppendZeros(ref StringBuilder soundex)
     {
         while (soundex.Length < 4)
         {
@@ -40,34 +41,18 @@ public class Soundex
     private static char GetSoundexCode(char c)
     {
         c = char.ToUpper(c);
-        switch (c)
-        {
-            case 'B':
-            case 'F':
-            case 'P':
-            case 'V':
-                return '1';
-            case 'C':
-            case 'G':
-            case 'J':
-            case 'K':
-            case 'Q':
-            case 'S':
-            case 'X':
-            case 'Z':
-                return '2';
-            case 'D':
-            case 'T':
-                return '3';
-            case 'L':
-                return '4';
-            case 'M':
-            case 'N':
-                return '5';
-            case 'R':
-                return '6';
-            default:
-                return '0'; // For A, E, I, O, U, H, W, Y
-        }
+        return ReplaceCharWithDigit("BFPV", c, '1');
+        return ReplaceCharWithDigit("CGJKQSXZ", c, '2');
+        return ReplaceCharWithDigit("DT", c, '3');
+        return ReplaceCharWithDigit("L", c, '4');
+        return ReplaceCharWithDigit("MN", c, '5');
+        return ReplaceCharWithDigit("R", c, '6');
+        return '0';        
+    }
+
+    private static char (string CharSet, char c, char number)
+    {
+        if(CharSet.Contains(c))
+            return number;
     }
 }
