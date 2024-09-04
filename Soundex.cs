@@ -19,15 +19,20 @@ public class Soundex
         soundex.ToString();
     }
     
-    private static void GetSoundexCodeAndAppend (string name, ref StringBuilder soundex)
+    private static void PassIndex (string name, ref StringBuilder soundex)
     {
         for (int i = 1; i < name.Length && soundex.Length < 4; i++)
         {
-            char code = GetSoundexCode(name[i]);
-            if (code != '0' && code != soundex[soundex.Length - 1])
-            {
-                soundex.Append(code);
-            }
+            GetSoundexCodeAndAppend(name[i], soundex);
+        }
+    }
+
+    private static void GetSoundexCodeAndAppend (char c, ref StringBuilder soundex)
+    {
+        char code = GetSoundexCode(c);
+        if (code != '0' && code != soundex[soundex.Length - 1])
+        {
+            soundex.Append(code);
         }
     }
 
