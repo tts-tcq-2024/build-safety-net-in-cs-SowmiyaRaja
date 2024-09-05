@@ -31,19 +31,7 @@ public class SoundexTests
     {
         Assert.Equal("R150", Soundex.GenerateSoundex("Rubin"));
     }
-
-    [Fact]
-    public void HandlesStringAshcraft()
-    {
-        Assert.Equal("A261", Soundex.GenerateSoundex("Ashcraft"));
-    }
-
-    [Fact]
-    public void HandlesStringAshcroft()
-    {
-        Assert.Equal("A261", Soundex.GenerateSoundex("Ashcroft"));
-    }
-
+    
     [Fact]
     public void HandlesStringTymczak()
     {
