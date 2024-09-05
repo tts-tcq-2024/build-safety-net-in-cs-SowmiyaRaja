@@ -23,18 +23,18 @@ public class Soundex
         char prevCode = GetSoundexCode(name[0]);
         for (int i = 1; i < name.Length && soundex.Length < 4; i++)
         {
-            GetSoundexCodeAndAppend(name[i], ref soundex, prevCode);
-            prevCode = soundex[soundex.Length - 1];
+            prevCode = GetSoundexCodeAndAppend(name[i], ref soundex, prevCode);
         }
     }
 
-    private static void GetSoundexCodeAndAppend (char c, ref StringBuilder soundex, char prevCode)
+    private static char GetSoundexCodeAndAppend (char c, ref StringBuilder soundex, char prevCode)
     {
         char code = GetSoundexCode(c);
         if (code != '0' && code != prevCode)
         {
             soundex.Append(code);
         }
+        return code;
     }
 
     private static void AppendZeros(ref StringBuilder soundex)
