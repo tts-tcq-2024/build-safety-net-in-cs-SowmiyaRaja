@@ -47,13 +47,18 @@ public class Soundex
     private static char GetSoundexCode(char c)
     {
         c = char.ToUpper(c);
-        
-        return ReplaceCharWithDigit("BFPV", c, '1');
-        return ReplaceCharWithDigit("CGJKQSXZ", c, '2');
-        return ReplaceCharWithDigit("DT", c, '3');
-        return ReplaceCharWithDigit("L", c, '4');
-        return ReplaceCharWithDigit("MN", c, '5');
-        return ReplaceCharWithDigit("R", c, '6');      
+
+        if((ReplaceCharWithDigit("BFPVCGJKQSXZ"), c, '7') == '7')
+        {
+            if(ReplaceCharWithDigit("BFPV", c, '1') == '1')
+            {
+                return '1';`
+            }
+            else
+            {
+                return '2';
+            }
+        }
         return '0';
     }
 
@@ -61,6 +66,6 @@ public class Soundex
     {
         if(CharSet.Contains(c))
             return number;
-        return '7';
+        return '0';
     }
 }
