@@ -20,16 +20,18 @@ public class Soundex
     
     private static void GetIndexFromChar (string name, ref StringBuilder soundex)
     {
+        char prevCode = GetSoundexCode(name[0]);
         for (int i = 1; i < name.Length && soundex.Length < 4; i++)
         {
-            GetSoundexCodeAndAppend(name[i], ref soundex);
+            GetSoundexCodeAndAppend(name[i], ref soundex, prevCode);
+            prevCode = soundex[soundex.Length - 1];
         }
     }
 
-    private static void GetSoundexCodeAndAppend (char c, ref StringBuilder soundex)
+    private static void GetSoundexCodeAndAppend (char c, ref StringBuilder soundex, char prevCode)
     {
         char code = GetSoundexCode(c);
-        if (code != '0' && code != soundex[soundex.Length - 1])
+        if (code != '0' && code != prevCode)
         {
             soundex.Append(code);
         }
