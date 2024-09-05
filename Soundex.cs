@@ -59,8 +59,41 @@ public class Soundex
                 return '2';
             }
         }
+        return GetSoundexCodePart2(c);
+    }
+
+    private static char GetSoundexCodePart2(char c)
+    {
+        if(ReplaceCharWithDigit("DTL", c, '8') == '8')
+        {
+            if(ReplaceCharWithDigit("DT", c, '3') == '3')
+            {
+                return '3';
+            }
+            else
+            {
+                return '4';
+            }
+        }
+        return GetSoundexCodePart3(c);
+    }
+
+    private static char GetSoundexCodePart3(char c)
+    {
+        if(ReplaceCharWithDigit("MNR", c, '9') == '9')
+        {
+            if(ReplaceCharWithDigit("MN", c, '5') == '5')
+            {
+                return '5';
+            }
+            else
+            {
+                return '6';
+            }
+        }
         return '0';
     }
+    
 
     private static char ReplaceCharWithDigit(string CharSet, char c, char number)
     {
