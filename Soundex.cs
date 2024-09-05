@@ -16,7 +16,7 @@ public class Soundex
         GetIndexFromChar(name, ref soundex);
         
         AppendZeros(ref soundex);
-        soundex.ToString();
+        return soundex.ToString();
     }
     
     private static void GetIndexFromChar (string name, ref StringBuilder soundex)
@@ -48,7 +48,7 @@ public class Soundex
     {
         c = char.ToUpper(c);
 
-        if((ReplaceCharWithDigit("BFPVCGJKQSXZ"), c, '7') == '7')
+        if((ReplaceCharWithDigit("BFPVCGJKQSXZ", c, '7') == '7')
         {
             if(ReplaceCharWithDigit("BFPV", c, '1') == '1')
             {
