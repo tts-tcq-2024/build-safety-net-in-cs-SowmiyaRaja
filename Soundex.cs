@@ -52,7 +52,7 @@ public class Soundex
         {
             if(ReplaceCharWithDigit("BFPV", c, '1') == '1')
             {
-                return '1';`
+                return '1';
             }
             else
             {
