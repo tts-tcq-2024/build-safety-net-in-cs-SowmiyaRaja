@@ -1,1 +1,28 @@
+Test specification for Soundex program
+
+Goal: Verify the soundex program code coverage with different testcases to make the program error free.
+
+Test case 1: 
+Testcase Name: HandlesEmptyString
+Description: To verify the output of no input or empty string.
+Input: string.Empty
+Expected Output: no output
+
+Test case 2: 
+Testcase Name: HandlesSingleCharacterOfAlphabets
+Description: To verify the output of single Alphabets. eg, A, B, C .. Z
+Input:   A - Z
+Expected Output: A000, B000, ... Z000
+
+Test case 3: 
+Testcase Name: IsRobertSoundexValueR163
+Description: To verify the output of the string starting with consonants 
+Input: Robert
+Expected Output: R163
+
+Test case 4: 
+Testcase Name: IsRupertSoundexValueR163
+Description:
+Input: Rupert
+Expected Output: R163
 
