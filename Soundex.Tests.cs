@@ -9,7 +9,7 @@ public class SoundexTests
     }
 
     [Fact]
-    public void HandlesSingleCharacterAlphabets()
+    public void HandlesSingleCharacterOfAlphabets()
     {
         for (char singleAlphabet = 'A'; singleAlphabet <= 'Z'; ++singleAlphabet) 
         {
