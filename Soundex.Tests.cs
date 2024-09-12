@@ -14,6 +14,7 @@ public class SoundexTests
         for (char singleAlphabet = 'A'; singleAlphabet <= 'Z'; ++singleAlphabet) 
         {
             Assert.Equal(singleAlphabet.ToString()+"000", Soundex.GenerateSoundex(singleAlphabet.ToString()));
+        }
     }
 
     [Fact]
