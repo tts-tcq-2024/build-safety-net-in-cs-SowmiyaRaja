@@ -21,9 +21,9 @@ public class Soundex
     private static void GetIndexFromChar (string name, ref StringBuilder soundex)
     {
         char prevCode = GetSoundexCodeForCharSetBFPVCGJKQSXZ(name[0]);
-        for (int i = 1; i < name.Length && soundex.Length < 4; i++)
+        for (int index = 1; i < name.Length && soundex.Length < 4; index++)
         {
-            prevCode = GetSoundexCodeAndAppend(name[i], ref soundex, prevCode);
+            prevCode = GetSoundexCodeAndAppend(name[index], ref soundex, prevCode);
         }
     }
 
