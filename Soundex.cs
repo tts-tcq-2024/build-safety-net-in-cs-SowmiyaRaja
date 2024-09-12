@@ -45,54 +45,53 @@ public class Soundex
         }
     }
     
-    private static char GetSoundexCode(char c)
+    private static char GetSoundexCodeForCharSetBFPVCGJKQSXZ(char c)
     {
-        c = char.ToUpper(c);
-
-        if(ReplaceCharWithDigit("BFPVCGJKQSXZ", c, '7') == '7')
+        c = char.ToUpper(c);       
+        if(ReplaceCharWithDigit("BFPV", c, '1') == '1')
         {
-            if(ReplaceCharWithDigit("BFPV", c, '1') == '1')
-            {
-                return '1';
-            }
-            else
-            {
-                return '2';
-            }
+            return '1';
         }
-        return GetSoundexCodePart2(c);
+        else if(ReplaceCharWithDigit("CGJKQSXZ", c, '2') == '2')
+        {
+            return '2';
+        }
+        else
+        {
+            return GetSoundexCodeForCharSetDTL(c);
+        }
     }
 
-    private static char GetSoundexCodePart2(char c)
+    private static char GetSoundexCodeForCharSetDTL(char c)
     {
-        if(ReplaceCharWithDigit("DTL", c, '8') == '8')
+        if(ReplaceCharWithDigit("DT", c, '3') == '3')
         {
-            if(ReplaceCharWithDigit("DT", c, '3') == '3')
-            {
-                return '3';
-            }
-            else
-            {
-                return '4';
-            }
+            return '3';
         }
-        return GetSoundexCodePart3(c);
+        else if(ReplaceCharWithDigit("L", c, '4') == '4')
+        {
+            return '4';
+        }
+        else
+        {
+            return GetSoundexCodeForCharSetMNR(c);
+        }
     }
 
-    private static char GetSoundexCodePart3(char c)
+    private static char GetSoundexCodeForCharSetMNR(char c)
     {
-        if(ReplaceCharWithDigit("MNR", c, '9') == '9')
-        {
             if(ReplaceCharWithDigit("MN", c, '5') == '5')
             {
                 return '5';
             }
-            else
+            else if(ReplaceCharWithDigit("R", c, '6') == '6')
             {
                 return '6';
             }
-        }
-        return '0';
+            else
+            {
+                 return '0';   
+            }
     }
     
 
