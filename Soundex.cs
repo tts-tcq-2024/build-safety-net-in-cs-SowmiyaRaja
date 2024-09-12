@@ -12,57 +12,93 @@ public class Soundex
 
         StringBuilder soundex = new StringBuilder();
         soundex.Append(char.ToUpper(name[0]));
-        char prevCode = GetSoundexCode(name[0]);
-
-        for (int i = 1; i < name.Length && soundex.Length < 4; i++)
+        GetIndexFromChar(name, ref soundex);
+        
+        AppendZeros(ref soundex);
+        return soundex.ToString();
+    }
+    
+    private static void GetIndexFromChar (string name, ref StringBuilder soundex)
+    {
+        char prevCode = GetSoundexCodeForCharSetBFPVCGJKQSXZ(name[0]);
+        for (int index = 1; index < name.Length && soundex.Length < 4; index++)
         {
-            char code = GetSoundexCode(name[i]);
-            if (code != '0' && code != prevCode)
-            {
-                soundex.Append(code);
-                prevCode = code;
-            }
+            prevCode = GetSoundexCodeAndAppend(name[index], ref soundex, prevCode);
         }
+    }
 
+    private static char GetSoundexCodeAndAppend (char c, ref StringBuilder soundex, char prevCode)
+    {
+        char code = GetSoundexCodeForCharSetBFPVCGJKQSXZ(c);
+        if (code != '0' && code != prevCode)
+        {
+            soundex.Append(code);
+        }
+        return code;
+    }
+
+    private static void AppendZeros(ref StringBuilder soundex)
+    {
         while (soundex.Length < 4)
         {
             soundex.Append('0');
         }
-
-        return soundex.ToString();
+    }
+    
+    private static char GetSoundexCodeForCharSetBFPVCGJKQSXZ(char c)
+    {
+        c = char.ToUpper(c);       
+        if(ReplaceCharWithDigit("BFPV", c, '1') == '1')
+        {
+            return '1';
+        }
+        else if(ReplaceCharWithDigit("CGJKQSXZ", c, '2') == '2')
+        {
+            return '2';
+        }
+        else
+        {
+            return GetSoundexCodeForCharSetDTL(c);
+        }
     }
 
-    private static char GetSoundexCode(char c)
+    private static char GetSoundexCodeForCharSetDTL(char c)
     {
-        c = char.ToUpper(c);
-        switch (c)
+        if(ReplaceCharWithDigit("DT", c, '3') == '3')
         {
-            case 'B':
-            case 'F':
-            case 'P':
-            case 'V':
-                return '1';
-            case 'C':
-            case 'G':
-            case 'J':
-            case 'K':
-            case 'Q':
-            case 'S':
-            case 'X':
-            case 'Z':
-                return '2';
-            case 'D':
-            case 'T':
-                return '3';
-            case 'L':
-                return '4';
-            case 'M':
-            case 'N':
-                return '5';
-            case 'R':
-                return '6';
-            default:
-                return '0'; // For A, E, I, O, U, H, W, Y
+            return '3';
         }
+        else if(ReplaceCharWithDigit("L", c, '4') == '4')
+        {
+            return '4';
+        }
+        else
+        {
+            return GetSoundexCodeForCharSetMNR(c);
+        }
+    }
+
+    private static char GetSoundexCodeForCharSetMNR(char c)
+    {
+            if(ReplaceCharWithDigit("MN", c, '5') == '5')
+            {
+                return '5';
+            }
+            else if(ReplaceCharWithDigit("R", c, '6') == '6')
+            {
+                return '6';
+            }
+            else
+            {
+                 return '0';   
+            }
+    }
+    
+
+    private static char ReplaceCharWithDigit(string CharSet, char c, char number)
+    {
+        if(CharSet.Contains(c))
+            return number;
+        return '0';
     }
 }
