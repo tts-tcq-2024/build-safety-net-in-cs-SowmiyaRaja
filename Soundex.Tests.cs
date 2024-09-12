@@ -30,25 +30,25 @@ public class SoundexTests
     }
 
     [Fact]
-    public void HandlesStringRubin()
+    public void IsRubinSoundexValueR150()
     {
         Assert.Equal("R150", Soundex.GenerateSoundex("Rubin"));
     }
     
     [Fact]
-    public void HandlesStringTymczak()
+    public void IsTymczakSoundexValueT522()
     {
         Assert.Equal("T522", Soundex.GenerateSoundex("Tymczak"));
     }
 
     [Fact]
-    public void HandlesStringPfister()
+    public void IsPfisterSoundexValueP236()
     {
         Assert.Equal("P236", Soundex.GenerateSoundex("Pfister"));
     }
 
     [Fact]
-    public void HandlesHoneyman()
+    public void IsHoneymanSoundexValueH555()
     {
         Assert.Equal("H555", Soundex.GenerateSoundex("Honeyman"));
     }
