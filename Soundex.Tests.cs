@@ -13,17 +13,17 @@ public class SoundexTests
     {
         for (char singleAlphabet = 'A'; singleAlphabet <= 'Z'; ++singleAlphabet) 
         {
-            Assert.Equal(singleAlphabet+"000", Soundex.GenerateSoundex(singleAlphabet.To));
+            Assert.Equal(singleAlphabet.ToString()+"000", Soundex.GenerateSoundex(singleAlphabet.ToString()));
     }
 
     [Fact]
-    public void HandlesStringRobert()
+    public void IsRobertSoundexValueR163()
     {
         Assert.Equal("R163", Soundex.GenerateSoundex("Robert"));
     }
 
     [Fact]
-    public void HandlesStringRupert()
+    public void IsRupertSoundexValueR163()
     {
         Assert.Equal("R163", Soundex.GenerateSoundex("Rupert"));
     }
