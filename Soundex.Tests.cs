@@ -9,9 +9,11 @@ public class SoundexTests
     }
 
     [Fact]
-    public void HandlesSingleCharacter()
+    public void HandlesSingleCharacterAlphabets()
     {
-        Assert.Equal("A000", Soundex.GenerateSoundex("A"));
+        for (char singleAlphabet = 'A'; singleAlphabet <= 'Z'; ++singleAlphabet) 
+        {
+            Assert.Equal(singleAlphabet+"000", Soundex.GenerateSoundex(singleAlphabet.To));
     }
 
     [Fact]
